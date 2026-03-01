@@ -1,0 +1,13 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 5
+
+[[deploy.healthchecks]]
+type = "http"
+path = "/health"
+intervalSeconds = 30
+timeoutSeconds = 10

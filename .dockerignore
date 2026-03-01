@@ -1,0 +1,10 @@
+node_modules
+dist
+ui
+.git
+.vercel
+*.log
+data/sessions
+data/event-log
+data/solana-trading
+data/news-collector

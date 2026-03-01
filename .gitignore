@@ -1,0 +1,34 @@
+node_modules/
+dist/
+ui/dist/
+ui/node_modules/
+
+# Data (user-generated — keep defaults, ignore runtime data)
+data/sessions/
+data/brain/
+data/cache/
+data/event-log/
+data/crypto-trading/
+data/securities-trading/
+data/news-collector/
+data/cron/
+
+# Keep config templates but ignore live overrides
+data/config/
+!data/config/.gitkeep
+
+# Env / secrets
+.env
+.env.local
+*.env
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
