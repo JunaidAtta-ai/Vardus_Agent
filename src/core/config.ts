@@ -83,7 +83,10 @@ export const NewsCollectorConfigSchema = z.object({
 
 export class Config {
   readonly aiProvider = AiProviderConfigSchema.parse(readJson("ai-provider.json"));
-  readonly model = ModelConfigSchema.parse(readJson("model.json"));
+  readonly model = ModelConfigSchema.parse({
+    ...readJson("model.json") as object,
+    ...(process.env.AI_MODEL ? { model: process.env.AI_MODEL } : {}),
+  });
   readonly apiKeys = ApiKeysConfigSchema.parse({
     ...readJson("api-keys.json") as object,
     ...(process.env.ANTHROPIC_API_KEY ? { anthropic: process.env.ANTHROPIC_API_KEY } : {}),
