@@ -97,7 +97,12 @@ export class TradingLoop {
 
   private loadSolanaConfig(): { autoTrading: boolean; tradingIntervalMinutes: number } {
     const p = "data/config/solana.json";
-    if (!fs.existsSync(p)) return { autoTrading: false, tradingIntervalMinutes: 10 };
-    return JSON.parse(fs.readFileSync(p, "utf8"));
+    const fromFile = fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : {};
+    return {
+      autoTrading: process.env.SOLANA_AUTO_TRADING === "false" ? false
+        : process.env.SOLANA_AUTO_TRADING === "true" ? true
+        : fromFile.autoTrading ?? true,
+      tradingIntervalMinutes: Number(process.env.SOLANA_TRADING_INTERVAL_MINUTES ?? fromFile.tradingIntervalMinutes ?? 10),
+    };
   }
 }
