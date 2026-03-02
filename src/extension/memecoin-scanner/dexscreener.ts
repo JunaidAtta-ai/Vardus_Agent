@@ -69,7 +69,7 @@ export class DexScreenerClient {
     for (let i = 0; i < mints.length; i += 30) chunks.push(mints.slice(i, i + 30));
 
     for (const chunk of chunks) {
-      const res = await fetch(`${DEXSCREENER_API}/tokens/solana/${chunk.join(",")}`);
+      const res = await fetch(`${DEXSCREENER_API}/latest/dex/tokens/${chunk.join(",")}`);
       if (!res.ok) continue;
       const data = (await res.json()) as { pairs?: Record<string, unknown>[] };
       for (const pair of data.pairs ?? []) {

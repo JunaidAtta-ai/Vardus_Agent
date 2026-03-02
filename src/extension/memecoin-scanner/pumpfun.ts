@@ -18,7 +18,7 @@ export interface PumpFunToken {
  * Uses the public Pump.fun API.
  */
 export class PumpFunClient {
-  private readonly baseUrl = "https://frontend-api.pump.fun";
+  private readonly baseUrl = "https://client-api-2-74b1891ee9f9.herokuapp.com";
 
   /** Get newest tokens (just launched) */
   async getNewTokens(limit = 20): Promise<PumpFunToken[]> {
