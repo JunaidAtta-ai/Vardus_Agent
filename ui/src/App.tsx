@@ -197,7 +197,7 @@ export default function App() {
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
           {/* GitHub link */}
           <a
-            href="https://github.com/ACTAVIS-source/vardus-agent"
+            href="https://github.com/JunaidAtta-ai/Vardus_Agent"
             target="_blank"
             rel="noreferrer"
             title="GitHub"

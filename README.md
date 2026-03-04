@@ -124,8 +124,8 @@ The UI streams live data from the agent in real-time via SSE:
 
 ```bash
 # Prerequisites: Node.js 22+
-git clone https://github.com/JunaidAtta-ai/actavis-agent
-cd actavis-agent
+git clone https://github.com/JunaidAtta-ai/Vardus_Agent
+cd Vardus_Agent
 npm install
 ```
 
