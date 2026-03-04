@@ -168,14 +168,14 @@ export default function App() {
       }}>
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-          <img src="/logo.png" alt="Actavis" style={{
+          <img src="/logo.png" alt="Vardus" style={{
             width: 32, height: 32, borderRadius: 7,
             objectFit: "contain",
             flexShrink: 0,
           }} />
           <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
             <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text)" }}>
-              ACTAVIS AGENT
+              VARDUS AGENT
             </span>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function App() {
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
           {/* GitHub link */}
           <a
-            href="https://github.com/ACTAVIS-source/actavis-agent"
+            href="https://github.com/ACTAVIS-source/vardus-agent"
             target="_blank"
             rel="noreferrer"
             title="GitHub"
