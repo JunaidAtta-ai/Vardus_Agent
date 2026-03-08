@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="ui/public/logo.png" alt="MILES TRADER" width="120" />
+<img src="ui/public/yq3yabhk_400x400.jpg" alt="MILES TRADER" width="120" />
 
 # MILES TRADER
 
