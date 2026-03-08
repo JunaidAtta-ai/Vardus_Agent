@@ -8,13 +8,13 @@
 
 [![Live](https://img.shields.io/badge/Live%20Dashboard-online-00ff94?style=for-the-badge&logo=vercel&logoColor=white)](https://ui-zeta-roan.vercel.app)
 [![Railway](https://img.shields.io/badge/Backend-Railway-6c42df?style=for-the-badge&logo=railway&logoColor=white)](https://actavis-agent-production.up.railway.app/health)
-[![Model](https://img.shields.io/badge/AI-GPT--4o-74aa9c?style=for-the-badge&logo=openai&logoColor=white)](#)
+[![Model](https://img.shields.io/badge/AI-GPT--4o%20%2F%20Claude%20Opus%204.6-74aa9c?style=for-the-badge&logo=openai&logoColor=white)](#)
 [![BNB](https://img.shields.io/badge/Chain-BNB-f0b90b?style=for-the-badge&logo=binance&logoColor=white)](#)
 [![SOL](https://img.shields.io/badge/Chain-SOL-9945ff?style=for-the-badge&logo=solana&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](#license)
 
 > **MILES TRADER** runs 24/7 — scanning DexScreener & Pump.fun every 10 minutes,  
-> reasoning through market data with GPT-4o, and executing trades autonomously on BNB & SOL.
+> reasoning through market data with GPT-4o / Claude Opus 4.6, and executing trades autonomously on BNB & SOL.
 
 <br/>
 
@@ -31,9 +31,11 @@ Every 10 minutes:
 
   📡 Scan  ──▶  DexScreener top boosts  +  Pump.fun trending
      │
-  🧠 Think ──▶  GPT-4o analyzes price action, volume, liquidity, age
+  🧠 Think ──▶  GPT-4o / Claude Opus 4.6 analyzes price action, volume, liquidity, age
+     │              and decides per chain independently
      │
-  💰 Act   ──▶  BUY (Jupiter swap)  /  SELL  /  HOLD
+  💰 Act   ──▶  SOL: BUY/SELL via Jupiter Swap
+     │          BNB: BUY/SELL via PancakeSwap
      │
   📊 Log   ──▶  Event log  →  Live UI via SSE stream
 ```
@@ -46,8 +48,9 @@ No human needed. Fully autonomous.
 
 | Layer | Technology |
 |---|---|
-| AI Brain | GPT-4o via Vercel AI SDK |
-| Blockchain | Solana — Jupiter aggregator swaps |
+| AI Brain | GPT-4o / Claude Opus 4.6 via Vercel AI SDK |
+| Blockchain (SOL) | Solana — Jupiter aggregator swaps |
+| Blockchain (BNB) | BNB Chain — PancakeSwap router |
 | Scanner | DexScreener API + Pump.fun |
 | Backend | Node 22 + TypeScript + Hono |
 | Frontend | React 18 + Vite 5 + Framer Motion |
@@ -63,9 +66,11 @@ flowchart TD
     A[🌐 Web UI\nVercel] -->|SSE stream| B[Hono Server\nRailway :3002]
     B --> C[Trading Loop\n10 min cycle]
     C --> D[Memecoin Scanner]
-    D -->|tokens| E[GPT-4o Brain]
-    E -->|BUY / SELL / HOLD| F[Jupiter Swap\nSolana]
+    D -->|tokens| E[🧠 AI Brain\nGPT-4o / Claude Opus 4.6]
+    E -->|SOL decision| F[Jupiter Swap\nSolana Mainnet]
+    E -->|BNB decision| I[PancakeSwap\nBNB Chain]
     F -->|tx signature| G[Event Log\nJSONL]
+    I -->|tx signature| G
     G -->|push| B
     D --> D1[DexScreener\nTop Boosts]
     D --> D2[Pump.fun\nTrending]
@@ -76,15 +81,15 @@ flowchart TD
 
 ## AI Brain
 
-MILES TRADER uses GPT-4o with a structured tool loop:
+MILES TRADER uses **GPT-4o** and **Claude Opus 4.6** with a structured tool loop — switchable via env var:
 
-- **`scan_tokens`** — pulls trending memecoins from DexScreener + Pump.fun
-- **`get_positions`** — checks current open positions & unrealized PnL
-- **`buy_token`** — executes a Jupiter swap (SOL → token)
-- **`sell_token`** — exits a position (token → SOL)
+- **`scan_tokens`** — pulls trending tokens from DexScreener + Pump.fun for both SOL and BNB
+- **`get_positions`** — checks current open positions & unrealized PnL across chains
+- **`buy_token`** — executes a Jupiter swap (SOL → token) or PancakeSwap (BNB → token)
+- **`sell_token`** — exits a position on the correct chain router
 - **`recall_memory`** — reads persistent notes from previous cycles
 
-Each cycle the agent reasons step-by-step: *"Should I enter this? What's the risk? Do I hold or exit?"*
+Each cycle the agent reasons step-by-step per chain: *"Should I enter this? What's the risk? Do I hold or exit?"*
 
 ---
 
@@ -94,8 +99,10 @@ Each cycle the agent reasons step-by-step: *"Should I enter this? What's the ris
 |---|---|
 | Cycle interval | 10 minutes |
 | Scanner sources | DexScreener top boosts + Pump.fun |
-| Swap router | Jupiter Aggregator |
-| Network | Solana Mainnet |
+| SOL swap router | Jupiter Aggregator |
+| BNB swap router | PancakeSwap |
+| Networks | Solana Mainnet + BNB Chain |
+| AI models | GPT-4o / Claude Opus 4.6 (switchable) |
 | Auto-trading | ✅ enabled by default |
 | Guard checks | Position size + liquidity + cooldown |
 
@@ -110,7 +117,7 @@ The UI streams live data from the agent in real-time via SSE:
 | Overview | Wallet balance, PnL, agent status |
 | Positions | Open trades with unrealized PnL |
 | Scanner | Tokens currently being analyzed |
-| Brain | GPT-4o reasoning log |
+| Brain | GPT-4o / Claude Opus 4.6 reasoning log |
 | Event Log | Full event stream |
 | Config | Agent parameters |
 
@@ -137,7 +144,7 @@ OPENAI_API_KEY=sk-...
 SOLANA_PRIVATE_KEY=your_base58_private_key
 SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
 SOLANA_AUTO_TRADING=true
-AI_MODEL=gpt-4o
+AI_MODEL=gpt-4o          # or: claude-opus-4-6
 PORT=3002
 ```
 
@@ -159,7 +166,7 @@ Open [localhost:3002](http://localhost:3002)
 **Backend (Railway):**
 1. Connect GitHub repo to Railway
 2. Railway auto-detects `Dockerfile`
-3. Set env vars: `OPENAI_API_KEY`, `SOLANA_PRIVATE_KEY`, `AI_MODEL=gpt-4o`, `SOLANA_AUTO_TRADING=true`
+3. Set env vars: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `SOLANA_PRIVATE_KEY`, `AI_MODEL=gpt-4o` (or `claude-opus-4-6`), `SOLANA_AUTO_TRADING=true`
 
 **Frontend (Vercel):**
 1. Connect `ui/` subfolder to Vercel
@@ -175,9 +182,11 @@ Open [localhost:3002](http://localhost:3002)
 | Variable | Required | Description |
 |---|---|---|
 | `OPENAI_API_KEY` | ✅ | GPT-4o API key |
-| `SOLANA_PRIVATE_KEY` | ✅ | Base58 wallet private key |
+| `ANTHROPIC_API_KEY` | optional | Claude Opus 4.6 API key |
+| `SOLANA_PRIVATE_KEY` | ✅ | Base58 SOL wallet private key |
+| `BNB_PRIVATE_KEY` | optional | BNB Chain wallet private key |
 | `SOLANA_RPC_URL` | optional | Custom RPC (default: mainnet) |
-| `AI_MODEL` | optional | Model override (default: `gpt-4o`) |
+| `AI_MODEL` | optional | Model override: `gpt-4o` or `claude-opus-4-6` |
 | `SOLANA_AUTO_TRADING` | optional | Enable auto-trading (default: `true`) |
 | `SOLANA_TRADING_INTERVAL_MINUTES` | optional | Cycle interval (default: `10`) |
 | `PORT` | optional | HTTP port (default: `3002`) |
@@ -238,7 +247,7 @@ MIT © 2026 Miles Trader
 
 <div align="center">
 
-Built with ❤️ &nbsp;·&nbsp; Powered by GPT-4o &nbsp;·&nbsp; Running on Solana
+Built with ❤️ &nbsp;·&nbsp; Powered by GPT-4o &amp; Claude Opus 4.6 &nbsp;·&nbsp; Running on SOL &amp; BNB
 
 **[Dashboard](https://ui-zeta-roan.vercel.app)** &nbsp;·&nbsp; **[Health](https://actavis-agent-production.up.railway.app/health)**
 
