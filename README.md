@@ -12,8 +12,8 @@
 [![Chain](https://img.shields.io/badge/Chain-Solana-9945ff?style=for-the-badge&logo=solana&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](#license)
 
-> VARDUS runs 24/7 — scanning DexScreener & Pump.fun every 10 minutes,  
-> reasoning through market data with GPT-4o, and executing trades autonomously on Solana.
+> **MILES TRADER** runs 24/7 — scanning DexScreener & Pump.fun every 10 minutes,  
+> reasoning through market data with GPT-4o, and executing trades autonomously on BNB & SOL.
 
 <br/>
 
@@ -75,7 +75,7 @@ flowchart TD
 
 ## AI Brain
 
-VARDUS uses GPT-4o with a structured tool loop:
+MILES TRADER uses GPT-4o with a structured tool loop:
 
 - **`scan_tokens`** — pulls trending memecoins from DexScreener + Pump.fun
 - **`get_positions`** — checks current open positions & unrealized PnL
@@ -124,8 +124,8 @@ The UI streams live data from the agent in real-time via SSE:
 
 ```bash
 # Prerequisites: Node.js 22+
-git clone https://github.com/JunaidAtta-ai/Vardus_Agent
-cd Vardus_Agent
+git clone https://github.com/JunaidAtta-ai/Miles_Trader
+cd Miles_Trader
 npm install
 ```
 
@@ -215,7 +215,7 @@ ui/
 │   ├── hooks/useSSE.ts        # Live event stream hook
 │   └── api.ts                 # REST client
 └── public/
-    └── logo.png               # VARDUS logo
+    └── logo.png               # MILES TRADER logo
 ```
 
 </details>
@@ -231,7 +231,7 @@ ui/
 
 ## License
 
-MIT © 2026 Vardus
+MIT © 2026 Miles Trader
 
 ---
 

@@ -32,7 +32,7 @@ import { Heartbeat } from "./task/heartbeat/index.js";
 import { TradingLoop } from "./task/trading-loop/index.js";
 
 async function main(): Promise<void> {
-  console.log("=== VARDUS Agent starting ===");
+  console.log("=== MILES TRADER starting ===");
   const cfg = getConfig();
 
   // ── Core infrastructure ──────────────────────────────────────────────────
@@ -92,7 +92,7 @@ async function main(): Promise<void> {
   tradingLoop.start();
 
   // ── Record startup ───────────────────────────────────────────────────────
-  await eventLog.emit("agent.message", { message: "VARDUS Agent started", ts: Date.now() });
+  await eventLog.emit("agent.message", { message: "MILES TRADER started", ts: Date.now() });
   console.log(`=== Ready — http://localhost:${cfg.connectors.webPort} ===`);
 
   // ── Graceful shutdown ────────────────────────────────────────────────────
