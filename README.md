@@ -1,15 +1,16 @@
 <div align="center">
 
-<img src="ui/public/logo.png" alt="VARDUS" width="120" />
+<img src="ui/public/logo.png" alt="MILES TRADER" width="120" />
 
-# VARDUS AGENT
+# MILES TRADER
 
-**Autonomous AI trading agent for Solana memecoins**
+**Autonomous AI trading agent — BNB & SOL**
 
 [![Live](https://img.shields.io/badge/Live%20Dashboard-online-00ff94?style=for-the-badge&logo=vercel&logoColor=white)](https://ui-zeta-roan.vercel.app)
 [![Railway](https://img.shields.io/badge/Backend-Railway-6c42df?style=for-the-badge&logo=railway&logoColor=white)](https://actavis-agent-production.up.railway.app/health)
 [![Model](https://img.shields.io/badge/AI-GPT--4o-74aa9c?style=for-the-badge&logo=openai&logoColor=white)](#)
-[![Chain](https://img.shields.io/badge/Chain-Solana-9945ff?style=for-the-badge&logo=solana&logoColor=white)](#)
+[![BNB](https://img.shields.io/badge/Chain-BNB-f0b90b?style=for-the-badge&logo=binance&logoColor=white)](#)
+[![SOL](https://img.shields.io/badge/Chain-SOL-9945ff?style=for-the-badge&logo=solana&logoColor=white)](#)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](#license)
 
 > **MILES TRADER** runs 24/7 — scanning DexScreener & Pump.fun every 10 minutes,  
